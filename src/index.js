@@ -19,6 +19,9 @@ app.post("/tweets", (req, res) => {
 	const tweet = req.body;
 	tweets.push(tweet);
 	res.send("OK");
+	if (users === [] || users === "") {
+		return "UNAUTHORIZED";
+	}
 });
 
 app.get("/tweets", (req, res) => {
