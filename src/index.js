@@ -8,9 +8,10 @@ app.use(json());
 
 const users = [];
 const tweets = [];
+let user;
 
 app.post("/sign-up", (req, res) => {
-	const user = req.body;
+	user = req.body;
 	users.push(user);
 	res.send("OK");
 });
@@ -18,9 +19,10 @@ app.post("/sign-up", (req, res) => {
 app.post("/tweets", (req, res) => {
 	const tweet = req.body;
 	tweets.push(tweet);
-	res.send("OK");
-	if (users === []) {
-		res.sendStatus("UNAUTHORIZED");
+	if (!users.includes(user)) {
+		return res.status(401).send("UNAUTHORIZED");
+	} else {
+		res.send("OK");
 	}
 });
 
