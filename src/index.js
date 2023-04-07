@@ -20,7 +20,7 @@ app.post("/tweets", (req, res) => {
 	tweets.push(tweet);
 	res.send("OK");
 	if (users === []) {
-		res.send("UNAUTHORIZED");
+		res.sendStatus("UNAUTHORIZED");
 	}
 });
 
